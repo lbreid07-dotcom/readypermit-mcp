@@ -1,10 +1,15 @@
 {
   "name": "readypermit-mcp",
   "version": "1.0.0",
+  "mcpName": "io.github.lbreid07-dotcom/readypermit",
   "description": "ReadyPermit MCP Server — AI-powered property zoning, buildability & ADU eligibility analysis for any U.S. address. Use with Claude, ChatGPT, Cursor, and any MCP client.",
   "main": "dist/index.js",
   "bin": {
     "readypermit-mcp": "dist/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lbreid07-dotcom/readypermit-mcp.git"
   },
   "scripts": {
     "build": "tsc",
