@@ -1,0 +1,23 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.lbreid07-dotcom/readypermit",
+  "description": "Instant zoning analysis, ADU eligibility, flood risk, and Buildability\u2122 Score for any U.S. property. Powered by 20+ government data sources including FEMA, EPA, USGS, and county records. Replace $3,500 in consultant fees with a single API call.",
+  "repository": {
+    "url": "https://github.com/lbreid07-dotcom/readypermit-mcp",
+    "source": "github"
+  },
+  "version": "1.0.0",
+  "packages": [{
+    "registryType": "npm",
+    "identifier": "readypermit-mcp",
+    "version": "1.0.0",
+    "transport": { "type": "stdio" },
+    "environmentVariables": [{
+      "name": "READYPERMIT_API_KEY",
+      "description": "Your ReadyPermit API key from readypermit.ai/api",
+      "isRequired": true,
+      "isSecret": true,
+      "format": "string"
+    }]
+  }]
+}
