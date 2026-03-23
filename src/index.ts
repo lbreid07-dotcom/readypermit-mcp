@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
@@ -57,6 +56,7 @@ server.tool(
     address: z.string().describe("Full U.S. property address (e.g. 123 Main St, Austin, TX 78701)"),
     persona: z.enum(["homeowner", "investor", "developer", "lender"]).default("homeowner").describe("User type to tailor analysis perspective"),
   },
+  { readOnlyHint: true },
   async ({ address, persona }) => {
     const geo = await geocodeAddress(address);
     const reportUrl = buildUrl("/", geo?.formatted || address);
@@ -77,6 +77,7 @@ server.tool(
   "check_adu_eligibility",
   "Check if a property is eligible for an ADU (Accessory Dwelling Unit) - backyard cottage, garage conversion, or addition.",
   { address: z.string().describe("Full U.S. property address") },
+  { readOnlyHint: true },
   async ({ address }) => {
     const geo = await geocodeAddress(address);
     const aduUrl = buildUrl("/adu", geo?.formatted || address);
@@ -94,6 +95,7 @@ server.tool(
   "check_flood_risk",
   "Check FEMA flood zone status and environmental risk for a U.S. property. Covers flood hazard areas, EPA contamination, wildfire zones.",
   { address: z.string().describe("Full U.S. property address") },
+  { readOnlyHint: true },
   async ({ address }) => {
     const geo = await geocodeAddress(address);
     const url = buildUrl("/flood-zone-check", geo?.formatted || address);
@@ -111,6 +113,7 @@ server.tool(
   "compare_parcels",
   "Compare multiple U.S. properties side-by-side for zoning, buildability, and risk. Ideal for investors screening deals.",
   { addresses: z.array(z.string()).min(2).max(5).describe("Array of 2-5 U.S. property addresses to compare") },
+  { readOnlyHint: true },
   async ({ addresses }) => {
     const geos = await Promise.all(addresses.map(geocodeAddress));
     const lines = addresses.map((addr, i) => {
@@ -135,6 +138,7 @@ server.tool(
     address: z.string().describe("Full U.S. property address"),
     project_type: z.enum(["adu", "expansion", "garage_conversion", "new_construction", "any"]).default("any").describe("Specific project type or any"),
   },
+  { readOnlyHint: true },
   async ({ address, project_type }) => {
     const geo = await geocodeAddress(address);
     const url = buildUrl("/what-can-i-build", geo?.formatted || address);
@@ -154,5 +158,4 @@ async function main() {
   await server.connect(transport);
   console.error("ReadyPermit MCP server started");
 }
-
 main().catch(console.error);
