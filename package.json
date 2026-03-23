@@ -1,0 +1,38 @@
+{
+  "name": "readypermit-mcp",
+  "version": "1.0.0",
+  "description": "ReadyPermit MCP Server — AI-powered property zoning, buildability & ADU eligibility analysis for any U.S. address. Use with Claude, ChatGPT, Cursor, and any MCP client.",
+  "main": "dist/index.js",
+  "bin": {
+    "readypermit-mcp": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "tsx src/index.ts"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "readypermit",
+    "zoning",
+    "property",
+    "adu",
+    "buildability",
+    "real-estate",
+    "ai-tools",
+    "claude",
+    "chatgpt"
+  ],
+  "author": "Galax Studios <landon@readypermit.ai>",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "zod": "^3.22.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.0",
+    "@types/node": "^20.0.0",
+    "tsx": "^4.7.0"
+  }
+}
